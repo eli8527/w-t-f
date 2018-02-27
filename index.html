@@ -87,8 +87,9 @@ body {
 		</div>
   </div>
 	<script>
-	var active = document.getElementById("ojspoon");
-	var inactive = document.getElementById("dsjr");
+  var which = localStorage.getItem("which_img_active") || "ojspoon";
+	var active = document.getElementById(which);
+	var inactive = document.getElementById(which == "ojspoon" ? "dsjr" : "ojspoon");
 
 	// document.getElementById("sexter-dinister-container").addEventListener("mouseover", function() {
 	// 	active.style.display = 'none';
@@ -100,6 +101,9 @@ body {
 	// 	active.style.display = 'block';
 	// });
 
+  active.style.display = 'block';
+  inactive.style.display = 'none';
+
 	document.getElementById("sexter-dinister-container").addEventListener("click", function() {
 		active.style.display = 'none';
 		inactive.style.display = 'block';
@@ -107,6 +111,8 @@ body {
 		var tmp = active;
 		active = inactive;
 		inactive = tmp;
+
+    localStorage.setItem("which_img_active", active.id);
 	});
 	</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
